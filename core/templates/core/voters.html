@@ -1,0 +1,16 @@
+{%extends 'core/base.html'%}
+
+{%block title%}
+    {{type}}voter
+{%endblock%}
+
+{%block content%}
+  <div class="voters-page-container">
+  <h1 class="voters-heading">{{type}}voters are: </h1> 
+  <ul class="voter-list">
+  {% for voter in voters%} 
+    <li class="voter-name">{{voter.username}}</li>
+  {% endfor%} 
+  </ul>
+  </div>
+{%endblock%}

@@ -1,0 +1,15 @@
+{%extends 'core/base.html'%}
+
+{%block title%}
+    Delete Comment
+{%endblock%}
+
+{%block content%}
+    <form method="POST" action="">
+        {% csrf_token %}
+        <label>Are you sure you want to delete the comment</label>
+        <button>Yes</button>
+        <a href="{%url 'link' id%}">Go Back</a>
+    </form>
+    
+{%endblock%}

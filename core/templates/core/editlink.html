@@ -1,0 +1,14 @@
+{%extends 'core/base.html'%}
+
+{%block title%}
+    Edit Link
+{%endblock%}
+
+{%block content%}
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{ form }}
+        <button>Submit</button>
+    </form>
+    
+{%endblock%}

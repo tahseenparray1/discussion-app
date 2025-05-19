@@ -1,0 +1,18 @@
+{%extends 'core/base.html'%}
+
+{%block title%}
+    Links
+{%endblock%}
+
+{%block content%}
+    <div class="links-container">
+    <ul class="links-list">
+    {%for link in links%}
+        <li><a href="{% url 'link' link.id%}" class="links-link">{{link.title}}</a></li>
+    {%endfor%}
+    </ul>
+    {% if user.is_authenticated%}
+    <a href="{% url 'add_link' %}" class="addlink">Add Link</a>
+    {% endif%}
+    </div>
+{%endblock%}

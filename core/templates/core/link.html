@@ -1,0 +1,52 @@
+{%extends 'core/base.html'%} {%block title%} Links {%endblock%} 
+{%block content%}
+<div class="main-container">
+  <div class="link-container">
+    <h2 class="link-title">{{link.title}}</h2>
+    <h4 class="link-submitter">By {{link.submitter.username}}</h4>
+    <h4  class="link-score">Score: {{link.score}}</h4>
+    <div class="feedback-section">
+    {% if user.is_authenticated%} 
+    {% if user in link.upvoters.all%}
+    <a href="{% url 'downvote' link.id%}" class="remove-like">Remove Like</a>
+    {% elif user in link.downvoters.all%}
+    <a href="{% url 'upvote' link.id%}"   class="remove-dislike">Remove Dislike</a>
+    {% else %}
+    <a href="{% url 'upvote' link.id%}"  class="like" >Like </a> |
+    <a href="{% url 'downvote' link.id%}" class="dislike"> Dislike</a>
+    {% endif %}
+    </div>
+    <a href="{% url 'upvoters' link.id%}" class="upvoters">View Upvoters</a>
+    <a href="{% url 'downvoters' link.id%}" class="downvoters">View Downvoters</a>
+    {% endif%}
+    <div class="time-info">
+    <p class="datetime">Created On: {{link.created}}</p>
+    <p class="datetime">Updated On: {{link.updated}}</p>
+    </div>
+   <div class="del-edit">
+    {% if user.is_authenticated%}
+    <a href="{%url 'del_link' link.id%}" class="delbutton">Delete </a>
+    <a href="{%url 'edit_link' link.id%}" class="editbutton"> Edit</a>
+    {% endif%}
+    </div>
+  </div>
+
+  <hr />
+  <div class="comment-container">
+    {% for comment in comments%}
+    <p class="comment-text">{{comment.text}} </p>
+    <p class="author">{{comment.submitter}} on {{comment.updated}}</p>
+    {% if user == comment.submitter%}
+    <div class="edit-add-comment">
+      <a href="{%url 'edit_comment' comment.id%}" class="editcomment">Edit </a>|
+      <a href="{%url 'del_comment' comment.id%}" class="delcomment">Delete</a>
+    </div>
+
+    {% endif%} {%endfor%}
+    <br />
+    {% if user.is_authenticated%}
+    <a href="{%url 'add_comment' link.id %}" class="addcomment">ADD COMMENT</a>
+    {% endif%}
+  </div>
+</div>
+{%endblock%}
