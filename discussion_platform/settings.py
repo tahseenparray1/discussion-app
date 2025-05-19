@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'a-fallback-secret-key-for-local-devel
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://discussion-app-cb9k.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['discussion-app-cb9k.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
